@@ -1,0 +1,20 @@
+#!/system/bin/sh
+# Task Manager
+# By ImbaWind@xda developer
+
+clear  
+ps | awk '/controlpanel/{print " "$2"    "$5/10240" MB    "$9" ";}'
+ps | awk '/settings/{print " "$2"    "$5/10240" MB    "$9" ";}' 
+ps | awk '/app_/{print " "$2"    "$5/10240" MB    "$9" ";}' 
+echo ""
+free | awk '/Mem/{print "Free Memory : "$4/1024" MB";}' 
+echo ""
+echo " Insert 0 To Exit "
+echo -n " Terminate :"
+read pid
+if [ "$pid" -gt 0 ]; then
+	kill -9 $pid
+	tm
+else
+	exit 
+fi
